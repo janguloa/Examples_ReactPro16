@@ -8,11 +8,11 @@ import { ToggleLink } from "../ToggleLink";
 import { ConnectedProducts } from "./ProductsConnector";
 import { ProductEditor } from "./ProductEditor";
 import { ProductCreator } from "./ProductCreator";
+
 import { AuthPrompt } from "../auth/AuthPrompt";
 import { authWrapper } from "../auth/AuthWrapper";
 
-export default authWrapper(class extends Component {
-
+export const Admin = authWrapper(class extends Component {
     constructor(props) {
         super(props);
         this.client = new ApolloClient({
@@ -24,7 +24,7 @@ export default authWrapper(class extends Component {
             })
         })
     }
-    
+
     render() {
         return <ApolloProvider client={this.client}>
             <div className="container-fluid">
@@ -55,6 +55,7 @@ export default authWrapper(class extends Component {
                             <Route path="/admin/products/create"
                                 component={ProductCreator} />
                             <Route path="/admin/products/:id"
+
                                 component={ProductEditor} />
                             <Route path="/admin/products"
                                 component={ConnectedProducts} />
